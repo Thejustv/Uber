@@ -1,8 +1,14 @@
 import React,{useEffect} from "react";
-import { Text, SafeAreaView } from "react-native";
 import BootSplash from "react-native-bootsplash";
+import WelcomeScreen from "./screens/WelcomeScreen";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import OtpVerification from "./utils/OtpVerification";
+
 
 const App=()=>{
+
+  const Stack=createStackNavigator();
 
     useEffect(()=>{
         const init = async () => {
@@ -15,10 +21,15 @@ const App=()=>{
     },[])
 
     return (
-        <SafeAreaView style={{flex:1,justifyContent:'center',alignItems:'center',backgroundColor:'white'}}>
-            <Text style={{color:'red'}}>Hello World!</Text>
-        </SafeAreaView>
+       <NavigationContainer>
+          <Stack.Navigator>
+            <Stack.Screen name="welcomescreen" component={WelcomeScreen} options={{headerShown:false}}/>
+            <Stack.Screen name="OtpVerification" component={OtpVerification} options={{headerShown:false}}/>
+          </Stack.Navigator>
+       </NavigationContainer>
+       
     )
 }
+
 
 export default App;
